@@ -8,6 +8,36 @@
 
 import unittest
 import kol1
+import kol1dodek08
+
+class Client2Test(unittest.TestCase):
+
+#from my program in order to provide 12 tests
+	def setUp(self):
+		self.client = kol1dodek08.Client("Adam", 21)
+
+	def test_init(self):
+		self.assertEquals(self.client.name,'Adam')
+		self.assertEquals(self.client.id, 21)
+		self.assertEquals(self.client.accounts, 0)
+
+	def test_info(self):
+		self.assertEquals(self.client.info(), ('Adam',21,0))
+
+class SystemTest(unittest.TestCase):
+
+#from my program in order to provide 12 tests
+	def setUp(self):
+		self.system = kol1dodek08.System()
+
+	def test_init(self):
+		self.assertEquals(self.system.banks, [])
+		self.assertEquals(self.system.clients, [])
+		self.assertEquals(self.system.number_of_banks, 0)
+		self.assertEquals(self.system.number_of_clients, 0)
+
+		
+
 
 class ClientTest(unittest.TestCase):
 
@@ -58,6 +88,13 @@ class  BankTest(unittest.TestCase):
 		self.bank.money_transfer(0,1,100)
 		self.assertEquals(self.bank.clients[0].cash, 1100)
 		self.assertEquals(self.bank.clients[1].cash, 1900)
+
+	def test_write_client_data(self):
+		self.bank.new_client('Barbara','Babacka', 1000)
+		self.bank.write_client_data('testfile')
+		outfile = open('testfile',"r") 
+		content = outfile.read()
+		self.assertEqual(content, "Barbara Babacka : 1000\n")
 
 class  TransferTest(unittest.TestCase):
 
