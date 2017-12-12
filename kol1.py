@@ -58,94 +58,94 @@ class Transfer:
        bank_name_2.clients[int(client_id_2)].cash += money
 
        
-B.client_list()
-stop_commend = "no"
-banks = []
-bank_number = 0
-while stop_commend == "no":
-    print("\nEnter bank name.If you do not want to add another client type: break")
-    print("")
-    b_name = input()
-    if (b_name == "break"):
-        stop_commend = "yes"
-        break
-    banks.append(Bank(b_name))
-    print("Created a bank: \n", b_name)
+# B.client_list()
+# stop_commend = "no"
+# banks = []
+# bank_number = 0
+# while stop_commend == "no":
+#     print("\nEnter bank name.If you do not want to add another client type: break")
+#     print("")
+#     b_name = input()
+#     if (b_name == "break"):
+#         stop_commend = "yes"
+#         break
+#     banks.append(Bank(b_name))
+#     print("Created a bank: \n", b_name)
 
-    c_name = "1"
+#     c_name = "1"
 
-    while c_name != "break":
-        print("\nEnter client name.If you do not want to add another client type: break")
-        c_name = input()
-        if (c_name == "break"): break
-        print("Enter client surname")
-        c_surname = input()
-        print("Enter client's amount of cash")
-        c_cash = input()
-        banks[bank_number].new_client(c_name, c_surname, int(c_cash))
-        print("New client added: ", c_name, c_surname)
-        print("ID number: ", len(banks[bank_number].clients))
-        print("")
+#     while c_name != "break":
+#         print("\nEnter client name.If you do not want to add another client type: break")
+#         c_name = input()
+#         if (c_name == "break"): break
+#         print("Enter client surname")
+#         c_surname = input()
+#         print("Enter client's amount of cash")
+#         c_cash = input()
+#         banks[bank_number].new_client(c_name, c_surname, int(c_cash))
+#         print("New client added: ", c_name, c_surname)
+#         print("ID number: ", len(banks[bank_number].clients))
+#         print("")
 
-    print("List of clients of ", banks[bank_number].name, " bank:")
-    banks[bank_number].client_list()
-    bank_number += 1
-
-
-print("\nWhat you want to do: cash input, cash withdrawal or money transfer")
-answear = input()
-if answear == "cash input":
-    print("Enter bank name")
-    b_name = input()
-    print("Enter client ID number")
-    c_id = input()
-    print("Enter amount of cash to input")
-    cash_input = input()
-    for i in range (len(banks)):
-        if banks[i].name == b_name:
-            banks[i].cash_input(int(c_id), int(cash_input))
-    print("Bank: ", banks[i].name, "- client: ", banks[i].clients[int(c_id)-1].name, " " , banks[i].clients[int(c_id)-1].surname, " - cash: ", banks[i].clients[int(c_id)-1].cash)
+#     print("List of clients of ", banks[bank_number].name, " bank:")
+#     banks[bank_number].client_list()
+#     bank_number += 1
 
 
-elif answear == "cash withdrawal":
-    print("Enter bank name")
-    b_name = input()
-    print("Enter client ID number")
-    c_id = input()
-    print("Enter amount of cash to withdraw")
-    cash_withdrawal = input()
-    for i in range(len(banks)):
-        if banks[i].name == b_name:
-            banks[i].cash_withdrawal(int(c_id)-1, int(cash_withdrawal))
-            print("Bank: ", banks[i].name, "- client: ", banks[i].clients[int(c_id)-1].name, " ",
-                  banks[i].clients[int(c_id)-1].surname, " - cash: ", banks[i].clients[int(c_id)-1].cash)
+# print("\nWhat you want to do: cash input, cash withdrawal or money transfer")
+# answear = input()
+# if answear == "cash input":
+#     print("Enter bank name")
+#     b_name = input()
+#     print("Enter client ID number")
+#     c_id = input()
+#     print("Enter amount of cash to input")
+#     cash_input = input()
+#     for i in range (len(banks)):
+#         if banks[i].name == b_name:
+#             banks[i].cash_input(int(c_id), int(cash_input))
+#     print("Bank: ", banks[i].name, "- client: ", banks[i].clients[int(c_id)-1].name, " " , banks[i].clients[int(c_id)-1].surname, " - cash: ", banks[i].clients[int(c_id)-1].cash)
 
 
-else:
-    print("Transfer form client#1 to client#2")
-    print("Enter bank name of client#1")
-    b_name_1 = input()
-    print("Enter client ID of client#1")
-    c_id_1 = input()
-    print("Enter bank name of client#2")
-    b_name_2 = input()
-    print("Enter client ID of client#2")
-    c_id_2 = input()
-    print("Enter amount of cash to transfer")
-    cash_transfer = input()
-    if b_name_1 == b_name_2:
-        for i in range(len(banks)):
-            if banks[i].name == b_name_1:
-                banks[i].money_transfer(int(c_id_1)-1,int(c_id_2)-1, int(cash_transfer))
-    else:
-        t= Transfer()
-        for i in range(len(banks)):
-            if banks[i].name == b_name_1: bank_number_1 = i
-        for i in range(len(banks)):
-            if banks[i].name == b_name_2: bank_number_2 = i
-        t.money_transfer(banks[int(bank_number_1)],int(c_id_1)-1,banks[int(bank_number_2)],int(c_id_2)-1, int(cash_transfer))
+# elif answear == "cash withdrawal":
+#     print("Enter bank name")
+#     b_name = input()
+#     print("Enter client ID number")
+#     c_id = input()
+#     print("Enter amount of cash to withdraw")
+#     cash_withdrawal = input()
+#     for i in range(len(banks)):
+#         if banks[i].name == b_name:
+#             banks[i].cash_withdrawal(int(c_id)-1, int(cash_withdrawal))
+#             print("Bank: ", banks[i].name, "- client: ", banks[i].clients[int(c_id)-1].name, " ",
+#                   banks[i].clients[int(c_id)-1].surname, " - cash: ", banks[i].clients[int(c_id)-1].cash)
 
-print("\nEnter file name to save the list of clients from bank")
-file_name = input()
-for i in range(len(banks)):
-    banks[i].write_client_data(file_name)
+
+# else:
+#     print("Transfer form client#1 to client#2")
+#     print("Enter bank name of client#1")
+#     b_name_1 = input()
+#     print("Enter client ID of client#1")
+#     c_id_1 = input()
+#     print("Enter bank name of client#2")
+#     b_name_2 = input()
+#     print("Enter client ID of client#2")
+#     c_id_2 = input()
+#     print("Enter amount of cash to transfer")
+#     cash_transfer = input()
+#     if b_name_1 == b_name_2:
+#         for i in range(len(banks)):
+#             if banks[i].name == b_name_1:
+#                 banks[i].money_transfer(int(c_id_1)-1,int(c_id_2)-1, int(cash_transfer))
+#     else:
+#         t= Transfer()
+#         for i in range(len(banks)):
+#             if banks[i].name == b_name_1: bank_number_1 = i
+#         for i in range(len(banks)):
+#             if banks[i].name == b_name_2: bank_number_2 = i
+#         t.money_transfer(banks[int(bank_number_1)],int(c_id_1)-1,banks[int(bank_number_2)],int(c_id_2)-1, int(cash_transfer))
+
+# print("\nEnter file name to save the list of clients from bank")
+# file_name = input()
+# for i in range(len(banks)):
+#     banks[i].write_client_data(file_name)
